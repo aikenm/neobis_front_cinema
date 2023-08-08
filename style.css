@@ -25,30 +25,96 @@ body {
     width: 100%;
 }
 
-.premieres-container {
+.container-title {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 34px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.premiers-container {
     margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     width: 80%;
-    height: 300px;
+    max-width: 1300px;
     background-color: green;
 }
 
-.awaits-container {
+.top_awaits-container {
+    display: flex;
+    flex-wrap: wrap;
     margin: 0 auto;
     width: 80%;
-    height: 300px;
+    max-width: 1300px;
     background-color: blue;
 }
 
 .best-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     margin: 0 auto;
     width: 80%;
-    height: 300px;
+    max-width: 1300px;
     background-color: red;
 }
 
 .releases-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     margin: 0 auto;
     width: 80%;
-    height: 300px;
+    max-width: 1300px;
     background-color: orange;
+}
+
+.film {
+    width: calc(25% - 20px);
+    margin: 20px 10px 20px 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.film img {
+    width: 280px;
+    height: 390px;
+}
+
+@media (max-width: 1300px) {
+    .film {
+        width: calc(33.33% - 20px);
+    }
+
+    .film img {
+        width: 200px;
+        height: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .film {
+        width: calc(50% - 20px);
+    }
+
+    .film img {
+        width: 200px;
+        height: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .film {
+        width: 100%;
+    }
+
+    .film img {
+        width: 170px;
+        height: 240px;
+    }
 }
