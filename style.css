@@ -1,0 +1,54 @@
+html,
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    background-color: #1b1b20;
+}
+
+.logo-title {
+    margin: 0;
+    margin-left: 20px;
+    font-size: 37px;
+    color: #fff;
+    font-weight: 400;
+}
+
+.main-section {
+    background-color: yellow;
+    width: 100%;
+}
+
+.premieres-container {
+    margin: 0 auto;
+    width: 80%;
+    height: 300px;
+    background-color: green;
+}
+
+.awaits-container {
+    margin: 0 auto;
+    width: 80%;
+    height: 300px;
+    background-color: blue;
+}
+
+.best-container {
+    margin: 0 auto;
+    width: 80%;
+    height: 300px;
+    background-color: red;
+}
+
+.releases-container {
+    margin: 0 auto;
+    width: 80%;
+    height: 300px;
+    background-color: orange;
+}
