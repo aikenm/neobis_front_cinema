@@ -4,6 +4,11 @@ const top_awaits = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=
 const best = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=1";
 const releases = "https://kinopoiskapiunofficial.tech/api/v2.1/films/releases?year=2023&month=SEPTEMBER&page=1";
 
+function heartButtonEvent(heartButton, heartIcon) {
+    heartButton.addEventListener('click', function () {
+        heartIcon.classList.toggle('heart-filled');
+    });
+}
 
 function createFilmElement(film) {
     const filmElement = document.createElement('div');
@@ -39,10 +44,20 @@ function createFilmElement(film) {
         ratingElement.classList.add('red-border');
     }
 
+    const heartButton = document.createElement('button');
+    heartButton.classList.add('heart-button');
+    const heartIcon = document.createElement('img');
+    heartIcon.src = 'images/heart1.png';
+    heartIcon.classList.add('heart-icon');
+    heartButton.appendChild(heartIcon);
+
+    heartButtonEvent(heartButton, heartIcon);
+
     filmElement.appendChild(imageElement);
     filmElement.appendChild(nameElement);
     filmElement.appendChild(genreElement);
     filmElement.appendChild(ratingElement);
+    filmElement.appendChild(heartButton);
 
     return filmElement;
 }
@@ -67,7 +82,7 @@ function formatRating(rating) {
 }
 
 
-// Premiers fetch
+// Top Premiers fetch
 fetch(premiers, {
     method: 'GET',
     headers: {
@@ -88,7 +103,7 @@ fetch(premiers, {
     .catch(err => console.log(err));
 
 
-// Awaits fetch
+// Top Awaits fetch
 fetch(top_awaits, {
     method: 'GET',
     headers: {
@@ -110,7 +125,7 @@ fetch(top_awaits, {
     .catch(err => console.log(err));
 
 
-// Best fetch
+// Top Best fetch
 fetch(best, {
     method: 'GET',
     headers: {
@@ -132,7 +147,7 @@ fetch(best, {
     .catch(err => console.log(err));
 
 
-// Releases fetch
+// Top Releases fetch
 fetch(releases, {
     method: 'GET',
     headers: {

@@ -118,6 +118,26 @@ body {
     border-color: red;
 }
 
+.heart-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.heart-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.heart-icon.heart-filled {
+    filter: invert(20%) sepia(100%) saturate(1500%) hue-rotate(0deg);
+    filter: brightness(1.5) sepia(100%) saturate(100%) hue-rotate(0deg);
+}
+
+
 @media (max-width: 1340px) {
     .film {
         width: calc(33.33% - 20px);
@@ -126,6 +146,11 @@ body {
     .film img {
         width: 240px;
         height: 310px;
+    }
+
+    .heart-button {
+        width: 30px;
+        height: 30px;
     }
 }
 
@@ -138,6 +163,11 @@ body {
         width: 220px;
         height: 290px;
     }
+
+    .heart-button {
+        width: 30px;
+        height: 30px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -149,12 +179,22 @@ body {
         width: 200px;
         height: 280px;
     }
+
+    .heart-button {
+        width: 30px;
+        height: 30px;
+    }
 }
 
 @media (max-width: 480px) {
     .film img {
         width: 170px;
         height: 240px;
+    }
+
+    .heart-button {
+        width: 30px;
+        height: 30px;
     }
 }
 
