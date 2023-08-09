@@ -1,9 +1,9 @@
 const API_KEY = "eed3ab61-eb4b-433b-af21-8b9c09ac44c6";
-
 const premiers = "https://kinopoiskapiunofficial.tech/api/v2.2/films/premieres?year=2023&month=AUGUST";
 const top_awaits = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=1";
 const best = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=1";
-const releases = "https://kinopoiskapiunofficial.tech/api/v2.1/films/releases?year=2023&month=OCTOBER&page=1";
+const releases = "https://kinopoiskapiunofficial.tech/api/v2.1/films/releases?year=2023&month=SEPTEMBER&page=1";
+
 
 function createFilmElement(film) {
     const filmElement = document.createElement('div');
@@ -11,15 +11,33 @@ function createFilmElement(film) {
 
     const imageElement = document.createElement('img');
     imageElement.src = film.posterUrlPreview;
+    imageElement.classList.add('poster');
 
     const nameElement = document.createElement('h3');
-    nameElement.textContent = film.nameEn;
+    nameElement.textContent = film.nameRu;
+    nameElement.classList.add('film-title');
 
+    const genreNames = film.genres.map(genreObject => genreObject.genre);
     const genreElement = document.createElement('p');
-    genreElement.textContent = film.genres.join(', ');
+    genreElement.textContent = genreNames.join(', ');
+    genreElement.classList.add('genre-title');
 
     const ratingElement = document.createElement('p');
-    ratingElement.textContent = film.ratingKinopoisk;
+    const formattedRating = formatRating(film.rating);
+    ratingElement.textContent = formattedRating;
+    ratingElement.classList.add('film-rating');
+
+    if (parseFloat(formattedRating) > 9.0) {
+        ratingElement.classList.add('green-border');
+    } else if (parseFloat(formattedRating) > 8.0) {
+        ratingElement.classList.add('light-green-border');
+    } else if (parseFloat(formattedRating) > 7.0) {
+        ratingElement.classList.add('yellow-border');
+    } else if (parseFloat(formattedRating) > 6.0) {
+        ratingElement.classList.add('orange-border');
+    } else {
+        ratingElement.classList.add('red-border');
+    }
 
     filmElement.appendChild(imageElement);
     filmElement.appendChild(nameElement);
@@ -29,33 +47,48 @@ function createFilmElement(film) {
     return filmElement;
 }
 
-// Premiers
+function formatRating(rating) {
+    if (typeof rating === 'number') {
+        return rating.toFixed(1);
+    } else if (typeof rating === 'string') {
+        if (rating.endsWith('%')) {
+            const numericRating = parseFloat(rating);
+            if (!isNaN(numericRating)) {
+                return (numericRating / 10).toFixed(1);
+            }
+        } else {
+            const numericRating = parseFloat(rating);
+            if (!isNaN(numericRating)) {
+                return numericRating.toFixed(1);
+            }
+        }
+    }
+    return '0';
+}
+
+
+// Premiers fetch
 fetch(premiers, {
     method: 'GET',
     headers: {
         'X-API-KEY': API_KEY,
-        'Content-Type': 'application/json',
         'Accept': 'application/json'
     }
 })
     .then(res => res.json())
     .then(data => {
-        console.log(data);
         const container = document.getElementById('premiers-container');
-        if (data && data.films) {
-            const top10Premiers = data.films.slice(0, 10);
-            top10Premiers.forEach(film => {
+        data.items.forEach(film => {
+            if (container && container.children.length < 11) {
                 const filmElement = createFilmElement(film);
                 container.appendChild(filmElement);
-            });
-        } else {
-            console.log('Invalid or missing data in API response for premiers');
-        }
+            }
+        });
     })
     .catch(err => console.log(err));
 
 
-// Awaits
+// Awaits fetch
 fetch(top_awaits, {
     method: 'GET',
     headers: {
@@ -68,7 +101,7 @@ fetch(top_awaits, {
     .then(data => {
         const container = document.getElementById('top_awaits-container');
         data.films.forEach(film => {
-            if (container && container.children.length < 10) {
+            if (container && container.children.length < 11) {
                 const filmElement = createFilmElement(film);
                 container.appendChild(filmElement);
             }
@@ -77,7 +110,7 @@ fetch(top_awaits, {
     .catch(err => console.log(err));
 
 
-// Best
+// Best fetch
 fetch(best, {
     method: 'GET',
     headers: {
@@ -90,7 +123,7 @@ fetch(best, {
     .then(data => {
         const container = document.getElementById('best-container');
         data.films.forEach(film => {
-            if (container && container.children.length < 10) {
+            if (container && container.children.length < 11) {
                 const filmElement = createFilmElement(film);
                 container.appendChild(filmElement);
             }
@@ -99,28 +132,23 @@ fetch(best, {
     .catch(err => console.log(err));
 
 
-// Releases
+// Releases fetch
 fetch(releases, {
     method: 'GET',
     headers: {
         'X-API-KEY': API_KEY,
-        'Content-Type': 'application/json',
         'Accept': 'application/json'
     }
 })
     .then(res => res.json())
     .then(data => {
-        console.log(data);
-        const container = document.getElementById('premiers-container');
-        if (data && data.films) {
-            const top10Premiers = data.films.slice(0, 10);
-            top10Premiers.forEach(film => {
+        const container = document.getElementById('releases-container');
+        data.releases.forEach(film => {
+            if (container && container.children.length < 11) {
                 const filmElement = createFilmElement(film);
                 container.appendChild(filmElement);
-            });
-        } else {
-            console.log('Invalid or missing data in API response for premiers');
-        }
+            }
+        });
     })
     .catch(err => console.log(err));
 
