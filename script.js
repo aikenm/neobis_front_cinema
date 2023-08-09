@@ -1,8 +1,13 @@
-const API_KEY = "eed3ab61-eb4b-433b-af21-8b9c09ac44c6";
+// First key
+// const API_KEY = "eed3ab61-eb4b-433b-af21-8b9c09ac44c6";
+
+// Second key
+const API_KEY = "e4e07a0d-eac1-4a46-a069-2cb4e5e35cfd";
+
 const premiers = "https://kinopoiskapiunofficial.tech/api/v2.2/films/premieres?year=2023&month=AUGUST";
 const top_awaits = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=1";
 const best = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=1";
-const releases = "https://kinopoiskapiunofficial.tech/api/v2.1/films/releases?year=2023&month=SEPTEMBER&page=1";
+const releases = "https://kinopoiskapiunofficial.tech/api/v2.1/films/releases?year=2023&month=AUGUST&page=1";
 
 function heartButtonEvent(heartButton, heartIcon) {
     heartButton.addEventListener('click', function () {
