@@ -10,10 +10,14 @@
 
 <body>
     <header class="header">
-        <h1 class="logo-title">Kinopoisk.kg</h1>
-        <button class="favourites-button"><img class="favourites-icon" src="images/heart1.png"></button>
+        <h1 class="logo-title">Kinoafisha.kg</h1>
+        <div class="counter-box">
+            <span id="favorites-counter" class="favorites-counter"></span>
+        </div>
+        <button class="favorites-button header-button" id="favorites-button">Favorites</button>
+        <button class="home-button header-button" id="home-button">Home</button>
     </header>
-    <section class="main-section">
+    <section class="main-section" id="main-section">
         <div class="premiers-container container" id="premiers-container">
             <h3 class="container-title">TOP 10 Premiers of August</h3>
         </div>
@@ -25,6 +29,11 @@
         </div>
         <div class="releases-container container" id="releases-container">
             <h3 class="container-title">TOP 10 Releases of August</h3>
+        </div>
+    </section>
+    <section class="favorites-section" id="favorites-section">
+        <div class="favorites-container container" id="favorites-container">
+            <h3 class="container-title">Your favorites</h3>
         </div>
     </section>
     <footer class="footer"><span class="footer-text">© This website is the property of Aiken Manasbekov.</span></footer>

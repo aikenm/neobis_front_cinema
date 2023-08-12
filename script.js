@@ -1,5 +1,5 @@
 // First key
-// const API_KEY = "eed3ab61-eb4b-433b-af21-8b9c09ac44c6";
+//const API_KEY = "eed3ab61-eb4b-433b-af21-8b9c09ac44c6";
 
 // Second key
 const API_KEY = "e4e07a0d-eac1-4a46-a069-2cb4e5e35cfd";
@@ -9,11 +9,75 @@ const top_awaits = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=
 const best = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=1";
 const releases = "https://kinopoiskapiunofficial.tech/api/v2.1/films/releases?year=2023&month=AUGUST&page=1";
 
-function heartButtonEvent(heartButton, heartIcon) {
-    heartButton.addEventListener('click', function () {
-        heartIcon.classList.toggle('heart-filled');
+const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+const favoritesCounter = document.getElementById('favorites-counter').textContent = favorites.length;
+const filmIdMap = {};
+
+const favoritesButton = document.getElementById('favorites-button');
+const homeButton = document.getElementById('home-button');
+const mainSection = document.getElementById('main-section');
+const favoritesSection = document.getElementById('favorites-section');
+const favoritesContainer = document.getElementById('favorites-container');
+
+favoritesButton.addEventListener('click', function () {
+    mainSection.style.display = 'none';
+    favoritesSection.style.display = 'block';
+    displayFavoriteFilms();
+});
+
+homeButton.addEventListener('click', function () {
+    favoritesSection.style.display = 'none';
+    mainSection.style.display = 'block';
+    displayFavoriteFilms();
+    location.reload();
+});
+
+function findFilmById(id) {
+    const film = favorites.find(favorite => JSON.stringify(favorite.kinopoiskId || favorite.filmId) === JSON.stringify(id));
+    return film;
+}
+function displayFavoriteFilms() {
+    console.log('Displaying favorite films...');
+    console.log(favorites);
+    favoritesContainer.innerHTML = '';
+
+    favorites.forEach(favoriteId => {
+        const film = filmIdMap[favoriteId];
+
+        if (film) {
+            console.log('Adding film to favorites container:', film.nameRu);
+            const filmElement = createFilmElement(film);
+            favoritesContainer.appendChild(filmElement);
+        }
     });
 }
+
+
+function heartButtonEvent(heartButton, heartIcon, film) {
+    const identifier = film.kinopoiskId || film.filmId;
+
+    heartButton.addEventListener('click', function () {
+        const index = favorites.indexOf(identifier);
+
+        if (index === -1) {
+            favorites.push(identifier);
+            heartIcon.classList.add('heart-filled');
+        } else {
+            favorites.splice(index, 1);
+            heartIcon.classList.remove('heart-filled');
+        }
+
+        document.getElementById('favorites-counter').textContent = favorites.length;
+
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        displayFavoriteFilms();
+    });
+
+    if (favorites.includes(identifier)) {
+        heartIcon.classList.add('heart-filled');
+    }
+}
+
 
 function createFilmElement(film) {
     const filmElement = document.createElement('div');
@@ -56,13 +120,12 @@ function createFilmElement(film) {
     heartIcon.classList.add('heart-icon');
     heartButton.appendChild(heartIcon);
 
-    heartButtonEvent(heartButton, heartIcon);
-
     filmElement.appendChild(imageElement);
     filmElement.appendChild(nameElement);
     filmElement.appendChild(genreElement);
     filmElement.appendChild(ratingElement);
     filmElement.appendChild(heartButton);
+    heartButtonEvent(heartButton, heartIcon, film);
 
     return filmElement;
 }
@@ -86,7 +149,6 @@ function formatRating(rating) {
     return '0';
 }
 
-
 // Top Premiers fetch
 fetch(premiers, {
     method: 'GET',
@@ -103,6 +165,7 @@ fetch(premiers, {
                 const filmElement = createFilmElement(film);
                 container.appendChild(filmElement);
             }
+            filmIdMap[film.kinopoiskId] = film;
         });
     })
     .catch(err => console.log(err));
@@ -125,6 +188,7 @@ fetch(top_awaits, {
                 const filmElement = createFilmElement(film);
                 container.appendChild(filmElement);
             }
+            filmIdMap[film.filmId] = film;
         });
     })
     .catch(err => console.log(err));
@@ -147,6 +211,7 @@ fetch(best, {
                 const filmElement = createFilmElement(film);
                 container.appendChild(filmElement);
             }
+            filmIdMap[film.filmId] = film;
         });
     })
     .catch(err => console.log(err));
@@ -168,8 +233,7 @@ fetch(releases, {
                 const filmElement = createFilmElement(film);
                 container.appendChild(filmElement);
             }
+            filmIdMap[film.filmId] = film;
         });
     })
     .catch(err => console.log(err));
-
-

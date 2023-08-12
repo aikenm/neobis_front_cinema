@@ -1,7 +1,11 @@
 html,
 body {
+    height: 100%;
     margin: 0;
-    font-family: sans-serif;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: rgb(46, 46, 79);
+    background: linear-gradient(220deg, rgba(46, 46, 79, 1) 0%, rgba(150, 145, 150, 1) 100%);
 }
 
 .header {
@@ -12,31 +16,91 @@ body {
     background-color: #1b1b20;
 }
 
+.main-section {
+    display: block;
+}
+
+.favorites-section {
+    display: none;
+}
+
 .logo-title {
     margin: 0;
     margin-left: 50px;
     font-size: 37px;
+    font-family: "Lucida Console", "Courier New", monospace;
     color: #fff;
-    font-weight: 400;
+    font-weight: 300;
 }
 
-.favourites-button {
+.counter-box {
+    display: flex;
     margin-left: auto;
+    margin-right: 5px;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+.favorites-counter {
+    color: #fff;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.favorites-button {
     margin-right: 40px;
-    width: 60px;
-    height: 60px;
     background: none;
     border: none;
     cursor: pointer;
+    font-size: 20px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    color: #fff;
 }
 
-.favourites-icon {
-    max-width: 100%;
-    filter: invert(50%) sepia(100%) saturate(2000%) hue-rotate(0deg);
+.home-button {
+    margin-right: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    color: #fff;
+}
+
+.favorites-button:hover {
+    margin-right: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    color: #29afb1;
+}
+
+.home-button:hover {
+    margin-right: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    color: #29afb1;
 }
 
 .main-section {
-    background-color: yellow;
+    min-height: 100%;
+    background: rgb(46, 46, 79);
+    background: linear-gradient(220deg, rgba(46, 46, 79, 1) 0%, rgba(150, 145, 150, 1) 100%);
+    width: 100%;
+}
+
+.favorites-section {
+    min-height: 100%;
+    background: rgb(46, 46, 79);
+    background: linear-gradient(220deg, rgba(46, 46, 79, 1) 0%, rgba(150, 145, 150, 1) 100%);
     width: 100%;
 }
 
@@ -48,7 +112,6 @@ body {
     max-width: 1300px;
 }
 
-
 .container-title {
     display: block;
     width: 100%;
@@ -56,24 +119,19 @@ body {
     font-size: 34px;
     color: #fff;
     margin-bottom: 10px;
-    font-weight: 400;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-weight: 300;
 }
 
-.premiers-container {
-    background-color: green;
-}
+.premiers-container {}
 
-.top_awaits-container {
-    background-color: blue;
-}
+.top_awaits-container {}
 
-.best-container {
-    background-color: red;
-}
+.best-container {}
 
-.releases-container {
-    background-color: orange;
-}
+.releases-container {}
+
+.favorites-container {}
 
 .film {
     position: relative;
@@ -81,22 +139,27 @@ body {
     margin: 20px 10px 20px 10px;
     padding: 10px;
     box-sizing: border-box;
-    background-color: #fff;
+    border-radius: 7px;
+    background: rgb(105, 105, 193);
+    background: linear-gradient(210deg, rgba(105, 105, 193, 1) 0%, rgba(91, 90, 91, 1) 79%);
 }
 
 .poster {
     width: 290px;
     height: 390px;
+    border-radius: 7px;
     max-width: 100%;
 }
 
 .film-title {
     font-size: 18px;
+    color: #fff;
 }
 
 .genre-title {
     font-size: 15px;
     margin-bottom: 45px;
+    color: #e3c94b;
 }
 
 .film-rating {
@@ -148,17 +211,17 @@ body {
 .heart-icon {
     width: 100%;
     height: 100%;
-    color: #fff;
+    filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(188deg) brightness(106%) contrast(101%);
 }
 
 .heart-icon.heart-filled {
-    filter: invert(50%) sepia(100%) saturate(2000%) hue-rotate(0deg);
+    filter: invert(34%) sepia(94%) saturate(7480%) hue-rotate(341deg) brightness(93%) contrast(118%);
 }
-
 
 @media (max-width: 1368px) {
     .film {
         width: calc(25% - 10px);
+        min-width: calc(25% - 10px);
     }
 
     .film img {
@@ -176,7 +239,6 @@ body {
     .film {
         width: calc(33.33% - 10px);
     }
-
 
     .film img {
         width: 250px;
@@ -207,6 +269,8 @@ body {
 
 .footer {
     display: flex;
+    position: relative;
+    bottom: 0;
     width: 100%;
     height: 80px;
     background-color: #1b1b20;
