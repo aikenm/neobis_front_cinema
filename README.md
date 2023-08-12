@@ -47,8 +47,8 @@ https://code.visualstudio.com/download
 git clone https://github.com/aikenm/neobis_front_cinema.git
 ```
 2. Open the project in your code editor (e.g., VS Code):
-3. Obtain a GIPHY API key by signing up on the GIPHY Developers portal.
-4. Replace the "myApiKey" API key in the project code with your actual API key.
+3. Obtain your own API key by signing up on the https://kinopoiskapiunofficial.tech.
+4. Replace the "API_KEY" key in the project code with your actual API key.
 5. Open the index.html file in your web browser.
 
 The project contains three main files:
