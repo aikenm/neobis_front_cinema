@@ -25,12 +25,20 @@ const favoritesContainer = document.getElementById('favorites-container');
 favoritesButton.addEventListener('click', function () {
     mainSection.style.display = 'none';
     favoritesSection.style.display = 'block';
+
+    favoritesButton.classList.add('active');
+    homeButton.classList.remove('active');
+
     displayFavoriteFilms();
 });
 
 homeButton.addEventListener('click', function () {
     favoritesSection.style.display = 'none';
     mainSection.style.display = 'block';
+
+    homeButton.classList.add('active');
+    favoritesButton.classList.remove('active');
+
     displayFavoriteFilms();
     location.reload();
 });
@@ -44,15 +52,27 @@ function displayFavoriteFilms() {
     console.log(favorites);
     favoritesContainer.innerHTML = '';
 
-    favorites.forEach(favoriteId => {
-        const film = filmIdMap[favoriteId];
+    const titleElement = document.createElement('h3');
+    titleElement.classList.add('container-title');
+    titleElement.textContent = 'Your favorites';
+    favoritesContainer.appendChild(titleElement);
 
-        if (film) {
-            console.log('Adding film to favorites container:', film.nameRu);
-            const filmElement = createFilmElement(film);
-            favoritesContainer.appendChild(filmElement);
-        }
-    });
+    if (favorites.length === 0) {
+        const noFavoritesMessage = document.createElement('span');
+        noFavoritesMessage.classList.add('no-favorites-message');
+        noFavoritesMessage.textContent = "You don't have your favorite films yet :(";
+        favoritesContainer.appendChild(noFavoritesMessage);
+    } else {
+        favorites.forEach(favorite => {
+            const film = filmIdMap[favorite];
+
+            if (film) {
+                console.log('Adding film to favorites container:', film.nameRu);
+                const filmElement = createFilmElement(film);
+                favoritesContainer.appendChild(filmElement);
+            }
+        });
+    }
 }
 
 
@@ -111,6 +131,8 @@ function createFilmElement(film) {
     } else if (parseFloat(formattedRating) > 7.0) {
         ratingElement.classList.add('yellow-border');
     } else if (parseFloat(formattedRating) > 6.0) {
+        ratingElement.classList.add('orange-border');
+    } else if (parseFloat(formattedRating) > 4.0) {
         ratingElement.classList.add('orange-border');
     } else {
         ratingElement.classList.add('red-border');

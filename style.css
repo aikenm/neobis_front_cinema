@@ -37,13 +37,16 @@ body {
 .counter-box {
     display: flex;
     margin-left: auto;
-    margin-right: 5px;
+    margin-right: 10px;
     width: 35px;
     height: 35px;
     border: 1px solid #fff;
     border-radius: 50%;
     align-items: center;
     justify-content: center;
+    box-shadow: 0px 1px 15px 0px rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 0px 1px 15px 0px rgba(255, 255, 255, 0.75);
+    -moz-box-shadow: 0px 1px 15px 0px rgba(255, 255, 255, 0.75);
 }
 
 .favorites-counter {
@@ -68,7 +71,15 @@ body {
     cursor: pointer;
     font-size: 18px;
     font-family: "Lucida Console", "Courier New", monospace;
-    color: #29afb1;
+    color: #e3b1db;
+}
+
+.header-button.active {
+    border-bottom: 1px solid #fff;
+}
+
+.header-button.active:hover {
+    border-bottom: 1px solid #e3b1db;
 }
 
 .main-section {
@@ -83,6 +94,16 @@ body {
     background: rgb(46, 46, 79);
     background: linear-gradient(220deg, rgba(46, 46, 79, 1) 0%, rgba(150, 145, 150, 1) 100%);
     width: 100%;
+}
+
+.no-favorites-message {
+    margin: 0 auto;
+    margin-top: 100px;
+    font-size: 30px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-weight: 300;
+    color: #fff;
+    text-shadow: 0px 4px 8px rgba(255, 255, 255, 0.6);
 }
 
 .container {
@@ -166,6 +187,10 @@ body {
 
 .orange-border {
     border-color: orange;
+}
+
+.darkorange-border {
+    border-color: darkorange;
 }
 
 .red-border {
