@@ -123,16 +123,6 @@ body {
     font-weight: 300;
 }
 
-.premiers-container {}
-
-.top_awaits-container {}
-
-.best-container {}
-
-.releases-container {}
-
-.favorites-container {}
-
 .film {
     position: relative;
     width: calc(25% - 20px);
@@ -252,13 +242,17 @@ body {
 }
 
 @media (max-width: 868px) {
+    .logo-title {
+        font-size: 24px;
+    }
+
     .film {
         width: 50%;
     }
 
     .film img {
-        width: 250px;
-        height: 330px;
+        width: 100%;
+        height: 380px;
     }
 
     .heart-icon {
