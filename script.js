@@ -48,8 +48,8 @@ function findFilmById(id) {
     return film;
 }
 function displayFavoriteFilms() {
-    console.log('Displaying favorite films...');
-    console.log(favorites);
+    // console.log('Displaying favorite films:');
+    // console.log(favorites);
     favoritesContainer.innerHTML = '';
 
     const titleElement = document.createElement('h3');
@@ -60,14 +60,14 @@ function displayFavoriteFilms() {
     if (favorites.length === 0) {
         const noFavoritesMessage = document.createElement('span');
         noFavoritesMessage.classList.add('no-favorites-message');
-        noFavoritesMessage.textContent = "You don't have your favorite films yet :(";
+        noFavoritesMessage.textContent = "You don't have any favorite movies yet :(";
         favoritesContainer.appendChild(noFavoritesMessage);
     } else {
         favorites.forEach(favorite => {
             const film = filmIdMap[favorite];
 
             if (film) {
-                console.log('Adding film to favorites container:', film.nameRu);
+                // console.log('Adding film to favorites container:', film.nameRu);
                 const filmElement = createFilmElement(film);
                 favoritesContainer.appendChild(filmElement);
             }
@@ -174,91 +174,93 @@ function formatRating(rating) {
     return '0';
 }
 
-// Top Premiers fetch
-fetch(premiers, {
-    method: 'GET',
-    headers: {
-        'X-API-KEY': API_KEY,
-        'Accept': 'application/json'
-    }
-})
-    .then(res => res.json())
-    .then(data => {
-        const container = document.getElementById('premiers-container');
-        data.items.forEach(film => {
-            if (container && container.children.length < 11) {
-                const filmElement = createFilmElement(film);
-                container.appendChild(filmElement);
-            }
-            filmIdMap[film.kinopoiskId] = film;
-        });
+window.addEventListener('DOMContentLoaded', function () {
+    // Top Premiers fetch
+    fetch(premiers, {
+        method: 'GET',
+        headers: {
+            'X-API-KEY': API_KEY,
+            'Accept': 'application/json'
+        }
     })
-    .catch(err => console.log(err));
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('premiers-container');
+            data.items.forEach(film => {
+                if (container && container.children.length < 11) {
+                    const filmElement = createFilmElement(film);
+                    container.appendChild(filmElement);
+                }
+                filmIdMap[film.kinopoiskId] = film;
+            });
+        })
+        .catch(err => console.log(err));
 
 
-// Top Awaits fetch
-fetch(top_awaits, {
-    method: 'GET',
-    headers: {
-        'X-API-KEY': API_KEY,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    }
-})
-    .then(res => res.json())
-    .then(data => {
-        const container = document.getElementById('top_awaits-container');
-        data.films.forEach(film => {
-            if (container && container.children.length < 11) {
-                const filmElement = createFilmElement(film);
-                container.appendChild(filmElement);
-            }
-            filmIdMap[film.filmId] = film;
-        });
+    // Top Awaits fetch
+    fetch(top_awaits, {
+        method: 'GET',
+        headers: {
+            'X-API-KEY': API_KEY,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
     })
-    .catch(err => console.log(err));
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('top_awaits-container');
+            data.films.forEach(film => {
+                if (container && container.children.length < 11) {
+                    const filmElement = createFilmElement(film);
+                    container.appendChild(filmElement);
+                }
+                filmIdMap[film.filmId] = film;
+            });
+        })
+        .catch(err => console.log(err));
 
 
-// Top Best fetch
-fetch(best, {
-    method: 'GET',
-    headers: {
-        'X-API-KEY': API_KEY,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    }
-})
-    .then(res => res.json())
-    .then(data => {
-        const container = document.getElementById('best-container');
-        data.films.forEach(film => {
-            if (container && container.children.length < 11) {
-                const filmElement = createFilmElement(film);
-                container.appendChild(filmElement);
-            }
-            filmIdMap[film.filmId] = film;
-        });
+    // Top Best fetch
+    fetch(best, {
+        method: 'GET',
+        headers: {
+            'X-API-KEY': API_KEY,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
     })
-    .catch(err => console.log(err));
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('best-container');
+            data.films.forEach(film => {
+                if (container && container.children.length < 11) {
+                    const filmElement = createFilmElement(film);
+                    container.appendChild(filmElement);
+                }
+                filmIdMap[film.filmId] = film;
+            });
+        })
+        .catch(err => console.log(err));
 
 
-// Top Releases fetch
-fetch(releases, {
-    method: 'GET',
-    headers: {
-        'X-API-KEY': API_KEY,
-        'Accept': 'application/json'
-    }
-})
-    .then(res => res.json())
-    .then(data => {
-        const container = document.getElementById('releases-container');
-        data.releases.forEach(film => {
-            if (container && container.children.length < 11) {
-                const filmElement = createFilmElement(film);
-                container.appendChild(filmElement);
-            }
-            filmIdMap[film.filmId] = film;
-        });
+    // Top Releases fetch
+    fetch(releases, {
+        method: 'GET',
+        headers: {
+            'X-API-KEY': API_KEY,
+            'Accept': 'application/json'
+        }
     })
-    .catch(err => console.log(err));
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('releases-container');
+            data.releases.forEach(film => {
+                if (container && container.children.length < 11) {
+                    const filmElement = createFilmElement(film);
+                    container.appendChild(filmElement);
+                }
+                filmIdMap[film.filmId] = film;
+            });
+        })
+        .catch(err => console.log(err));
+});
