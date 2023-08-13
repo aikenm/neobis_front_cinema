@@ -35,7 +35,7 @@ You can make a quick view here on **GitHub Pages:** https://aikenm.github.io/neo
 
 ## Installation
 
-To run this Todo List web page, you will need to have Visual Studio Code (VSCode) installed on your computer. If you don't have it already, you can download and install it from the official website:
+To run this Cinema web page, you will need to have Visual Studio Code (VSCode) installed on your computer. If you don't have it already, you can download and install it from the official website:
 
 https://code.visualstudio.com/download
 

@@ -47,6 +47,7 @@ function findFilmById(id) {
     const film = favorites.find(favorite => JSON.stringify(favorite.kinopoiskId || favorite.filmId) === JSON.stringify(id));
     return film;
 }
+
 function displayFavoriteFilms() {
     // console.log('Displaying favorite films:');
     // console.log(favorites);
