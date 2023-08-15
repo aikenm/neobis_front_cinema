@@ -39,7 +39,6 @@ homeButton.addEventListener('click', function () {
     homeButton.classList.add('active');
     favoritesButton.classList.remove('active');
 
-    displayFavoriteFilms();
     location.reload();
 });
 
@@ -49,8 +48,6 @@ function findFilmById(id) {
 }
 
 function displayFavoriteFilms() {
-    // console.log('Displaying favorite films:');
-    // console.log(favorites);
     favoritesContainer.innerHTML = '';
 
     const titleElement = document.createElement('h3');
@@ -68,7 +65,6 @@ function displayFavoriteFilms() {
             const film = filmIdMap[favorite];
 
             if (film) {
-                // console.log('Adding film to favorites container:', film.nameRu);
                 const filmElement = createFilmElement(film);
                 favoritesContainer.appendChild(filmElement);
             }
