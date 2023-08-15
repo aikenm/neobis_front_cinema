@@ -64,12 +64,6 @@ body {
 }
 
 .header-button:hover {
-    margin-right: 40px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    font-family: "Lucida Console", "Courier New", monospace;
     color: #e3b1db;
 }
 
@@ -81,14 +75,7 @@ body {
     border-bottom: 1px solid #e3b1db;
 }
 
-.main-section {
-    min-height: 100%;
-    background: rgb(50, 50, 59);
-    background: linear-gradient(323deg, rgba(50, 50, 59, 1) 0%, rgba(47, 62, 65, 1) 56%);
-    width: 100%;
-}
-
-.favorites-section {
+.section {
     min-height: 100%;
     background: rgb(50, 50, 59);
     background: linear-gradient(323deg, rgba(50, 50, 59, 1) 0%, rgba(47, 62, 65, 1) 56%);
