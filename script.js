@@ -1,8 +1,8 @@
 // First key
-const API_KEY = "eed3ab61-eb4b-433b-af21-8b9c09ac44c6";
+//const API_KEY = "eed3ab61-eb4b-433b-af21-8b9c09ac44c6";
 
 // Second key
-//const API_KEY = "e4e07a0d-eac1-4a46-a069-2cb4e5e35cfd";
+const API_KEY = "e4e07a0d-eac1-4a46-a069-2cb4e5e35cfd";
 
 // Third key
 //const API_KEY = "9a7a3e88-7a75-44d3-9684-53e20ec95909";
@@ -42,11 +42,6 @@ homeButton.addEventListener('click', function () {
     location.reload();
 });
 
-function findFilmById(id) {
-    const film = favorites.find(favorite => JSON.stringify(favorite.kinopoiskId || favorite.filmId) === JSON.stringify(id));
-    return film;
-}
-
 function displayFavoriteFilms() {
     favoritesContainer.innerHTML = '';
 
@@ -71,7 +66,6 @@ function displayFavoriteFilms() {
         });
     }
 }
-
 
 function heartButtonEvent(heartButton, heartIcon, film) {
     const identifier = film.kinopoiskId || film.filmId;
